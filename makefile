@@ -1,9 +1,15 @@
-circle: circle_impl.o circle_manager.o main.o 
-	clang++ -std=c++11 circle_impl.o circle_manager.o main.o -o circle
-circle_manager.o: circle_manager.cpp
-	clang++ -std=c++11 -c circle_manager.cpp
-circle_impl.o: circle_impl.cpp
-	clang++ -std=c++11 -c circle_impl.cpp
-main.o: main.cpp
-	clang++ -std=c++11 -c main.cpp
-	
+OBJECTS = circle_impl.o circle_manager.o main.o
+CC = clang++
+VPATH = source include
+INCLUDES = -I include
+CFLAGS = -std=c++11
+PROGRAM_NAME = circle 
+# make target
+all: $(OBJECTS)
+	$(CC) -o ${PROGRAM_NAME} $(OBJECTS)
+# dependence
+%.o: %.cpp
+	$(CC) $(CFLAGS) $(INCLUDES) -c $<
+# make clean
+clean: 
+	rm -f *.o circle
