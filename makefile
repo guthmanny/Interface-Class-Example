@@ -1,4 +1,4 @@
-OBJECTS = circle_impl.o circle_manager.o main.o
+OBJECTS = Circle.o ShapeManager.o main.o
 CC = clang++
 VPATH = source include
 INCLUDES = -I include
