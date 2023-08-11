@@ -1,9 +1,10 @@
 TARGET = shapeExample
 LIB = libshape.a
-CC = clang++
+CC = g++
 INC_DIRS = ./include
 SRC_DIRS = ./source
 LIB_DIRS = ./lib
+BUILD_DIRS = ./build
 SRC = $(wildcard $(SRC_DIRS)/*.cpp)
 INCLUDE = -I $(INC_DIRS)
 CXXFLAGS = -std=c++11
@@ -13,8 +14,8 @@ OBJS = $(notdir $(patsubst %.cpp,%.o,$(SRC)))
 #	@echo $(INCLUDE)
 
 # make target
-$(LIB): $(OBJS) 
-	libtool  -static $(OBJS) -o $(LIB_DIRS)/$@
+$(TARGET): $(OBJS) 
+	${CC}   $(OBJS) -o $(BUILD_DIRS)/$@
 
 # dependence
 %.o: $(SRC_DIRS)/%.cpp
